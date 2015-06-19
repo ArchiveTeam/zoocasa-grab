@@ -150,8 +150,12 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
       end
     end
   end
+
+  if string.match(url, "blur/") then
+    check(string.gsub(url, "blur/", "/"))
+  end
   
-  if string.match(url, item_value) then
+  if string.match(url, itemvalue) then
     html = read_file(file)
     for newurl in string.gmatch(html, '"(https?://[^"]+)"') do
       if string.match(newurl, itemvalue) then
